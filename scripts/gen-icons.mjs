@@ -8,18 +8,21 @@ import { dirname, join } from "node:path";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const svg = readFileSync(join(root, "src/app/icon.svg"));
 
-// iOS 홈스크린용: 풀블리드(테두리·라운드 없음, iOS가 자동 마스킹), 여백 넉넉히
+// iOS 홈스크린용: 풀블리드 다크 배경(iOS가 모서리 자동 마스킹), icon.svg를 5.625배 확대
 const apple = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
-  <rect width="180" height="180" fill="#faf9f6"/>
-  <g transform="translate(28,28) scale(3.875)">
-    <g fill="#14161c">
-      <rect x="6"  y="12" width="2.5" height="13" rx="0.6"/>
-      <rect x="16" y="12" width="2.5" height="13" rx="0.6"/>
-      <rect x="20" y="12" width="2.5" height="13" rx="0.6"/>
-      <rect x="24" y="12" width="2"   height="13" rx="0.6"/>
+  <rect width="180" height="180" fill="#14161c"/>
+  <g transform="scale(5.625)">
+    <g fill="#faf9f6">
+      <rect x="5.5"  y="6.5" width="2.0" height="14"/>
+      <rect x="8.4"  y="6.5" width="1.3" height="14"/>
+      <rect x="10.6" y="6.5" width="2.6" height="14"/>
+      <rect x="14.1" y="6.5" width="1.3" height="14"/>
+      <rect x="16.3" y="6.5" width="2.2" height="14"/>
+      <rect x="19.4" y="6.5" width="1.3" height="14"/>
+      <rect x="21.6" y="6.5" width="2.6" height="14"/>
+      <rect x="25.1" y="6.5" width="1.4" height="14"/>
     </g>
-    <rect x="10.5" y="9" width="3.5" height="16" rx="0.6" fill="#14161c"/>
-    <path d="M10.5 9 L12.25 4.5 L14 9 Z" fill="#4338ca"/>
+    <path d="M5 25.5 L10 19 L13.5 22.5 L19 16 L27 25.5 Z" fill="#4338ca"/>
   </g>
 </svg>`);
 
