@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- 웜페이퍼 타일 (사이트 background 토큰) -->
+  <rect x="0.75" y="0.75" width="30.5" height="30.5" rx="7" fill="#faf9f6" stroke="#e2ded4" stroke-width="1.5"/>
+  <!-- 잉크 바코드 막대 — 규격(막대·여백)은 신성불가침 -->
+  <g fill="#14161c">
+    <rect x="6"  y="12" width="2.5" height="13" rx="0.6"/>
+    <rect x="16" y="12" width="2.5" height="13" rx="0.6"/>
+    <rect x="20" y="12" width="2.5" height="13" rx="0.6"/>
+    <rect x="24" y="12" width="2"   height="13" rx="0.6"/>
+  </g>
+  <!-- "off the bars" — 막대 하나가 규격 위로 자라난다 -->
+  <rect x="10.5" y="9" width="3.5" height="16" rx="0.6" fill="#14161c"/>
+  <path d="M10.5 9 L12.25 4.5 L14 9 Z" fill="#4338ca"/>
+</svg>
