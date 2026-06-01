@@ -4,7 +4,7 @@
 
 Marketing landing page for **Off the Bars**, a barcode-art design service. We keep the spec barcode (bars, quiet zone, contrast) untouched and wrap it in brand-tone illustration — so it stays scannable while looking like part of the design. Built for Korean indie beauty & craft-beer brands.
 
-**Live:** _add URL after deploy_
+**Live:** https://offthebars.com
 
 ---
 
