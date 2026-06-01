@@ -10,7 +10,7 @@ export const site = {
 
   // 외부 링크 (비워두면 링크는 동작 안 함 — 채워주세요)
   instagram: "", // TODO: 예) https://instagram.com/offthebars
-  notionUrl: "", // TODO: 팀 소개 노션 페이지 URL
+  notionUrl: "https://offthebars.notion.site", // TODO: 팀 소개 노션 페이지 URL
 
   // 가격 (원) — 콜드아웃리치 카피 §4.2 기준
   price: {
