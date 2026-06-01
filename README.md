@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Off the Bars
 
-## Getting Started
+> Scannable barcode art for product packaging — the mandatory barcode you can't remove, redrawn in your brand's style and guaranteed to scan at retail POS.
 
-First, run the development server:
+Marketing landing page for **Off the Bars**, a barcode-art design service. We keep the spec barcode (bars, quiet zone, contrast) untouched and wrap it in brand-tone illustration — so it stays scannable while looking like part of the design. Built for Korean indie beauty & craft-beer brands.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+**Live:** _add URL after deploy_
+
+---
+
+## What this is
+
+A single-page, mobile-first landing built to be fast, minimal, and trustworthy. Its one job: show the product, remove the buyer's main objection (scan guarantee), and make getting in touch frictionless — a prefilled `mailto:`, no forms.
+
+Sections: hero → credibility strip → sample gallery → scan-guarantee banner → process → pricing → about → footer.
+
+## Tech stack
+
+- **Next.js 16** (App Router) + **React 19** + **TypeScript**
+- **Tailwind CSS v4** — theme tokens via `@theme inline`
+- **Pretendard** (Korean body type) + Geist Mono (barcode numerals)
+- **Vercel Web Analytics** — cookieless, with custom CTA click events
+- Deployed on **Vercel** (automatic HTTPS)
+
+No component library — hand-rolled with Tailwind for a single static landing.
+
+## Project structure
+
+```
+src/
+  app/
+    layout.tsx        # fonts, metadata/OG, <Analytics />
+    page.tsx          # section composition
+    globals.css       # theme tokens (Tailwind v4 @theme inline)
+  components/
+    barcode-art.tsx   # deterministic SVG barcode-art (placeholder visuals)
+    cta-button.tsx    # client component; fires Analytics events on click
+    site-nav.tsx
+    sections/         # hero, gallery, guarantee, pricing, footer, ...
+  lib/
+    site.ts           # single source of config — edit values here
+    mailto.ts         # prefilled mailto builder
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Configuration
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+All editable values live in **`src/lib/site.ts`** — brand name, contact email, pricing, lead time, business info, and social links. Change them there and the whole page updates; there are no environment variables to set.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The barcode visuals in `barcode-art.tsx` are generated SVG placeholders. Swap them for real artwork (via `next/image`) when designs are ready.
 
-## Learn More
+## Getting started
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm install
+npm run dev        # http://localhost:3000
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build      # production build
+npm run start      # serve the production build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+Import the repo on [Vercel](https://vercel.com/new) (zero config), or use the CLI:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+vercel             # preview deployment
+vercel --prod      # production
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Web Analytics runs automatically on Vercel with no extra setup.
+
+---
+
+© 2026 Off the Bars. All rights reserved.
