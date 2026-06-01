@@ -39,3 +39,129 @@ body {
   background: var(--ink);
   color: var(--background);
 }
+
+/* ── 메인 CTA: 뒤로 흐르는 홀로그램 바코드 (순수 CSS) ───────────────
+   잉크 버튼 위로 희미한 바코드 막대가 흘러 지나가고, 무지갯빛 sheen이
+   천천히 쓸고 지나가 홀로그램처럼 보입니다. 텍스트는 z-[1]로 항상 위에. */
+.cta-holo {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  filter: blur(0.7px);
+  /* 불규칙 폭의 세로 막대 = 바코드. 한 주기(44px)를 채워 매끄럽게 타일링 */
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0px,
+    rgba(255, 255, 255, 0) 4px,
+    rgba(255, 255, 255, 0.5) 4px,
+    rgba(255, 255, 255, 0.5) 6px,
+    rgba(255, 255, 255, 0) 6px,
+    rgba(255, 255, 255, 0) 11px,
+    rgba(255, 255, 255, 0.5) 11px,
+    rgba(255, 255, 255, 0.5) 14px,
+    rgba(255, 255, 255, 0) 14px,
+    rgba(255, 255, 255, 0) 19px,
+    rgba(255, 255, 255, 0.5) 19px,
+    rgba(255, 255, 255, 0.5) 20px,
+    rgba(255, 255, 255, 0) 20px,
+    rgba(255, 255, 255, 0) 26px,
+    rgba(255, 255, 255, 0.5) 26px,
+    rgba(255, 255, 255, 0.5) 30px,
+    rgba(255, 255, 255, 0) 30px,
+    rgba(255, 255, 255, 0) 36px,
+    rgba(255, 255, 255, 0.5) 36px,
+    rgba(255, 255, 255, 0.5) 38px,
+    rgba(255, 255, 255, 0) 38px,
+    rgba(255, 255, 255, 0) 44px
+  );
+  /* 양 끝에서 페이드 아웃 → 막대가 스르륵 나타났다 사라짐 */
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 16%,
+    #000 84%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 16%,
+    #000 84%,
+    transparent
+  );
+  opacity: 0.45;
+  transition: opacity 0.12s ease;
+  animation: cta-barcode-flow 4s linear infinite;
+}
+
+/* 빨간 스캐너 레이저 sheen — 막대 위를 비스듬히 쓸고 지나가며 스캔하는 빛 */
+.cta-holo::before {
+  content: "";
+  position: absolute;
+  inset: -60% -25%;
+  background: linear-gradient(
+    115deg,
+    transparent 32%,
+    rgba(220, 38, 38, 0.5) 44%,
+    rgba(255, 59, 48, 0.62) 52%,
+    rgba(248, 113, 113, 0.45) 60%,
+    transparent 72%
+  );
+  mix-blend-mode: screen;
+  filter: blur(2px);
+  transition: opacity 0.12s ease;
+  animation: cta-holo-sweep 3s ease-in-out infinite;
+}
+
+@keyframes cta-barcode-flow {
+  to {
+    background-position-x: -44px;
+  }
+}
+
+@keyframes cta-holo-sweep {
+  0% {
+    transform: translateX(-55%);
+  }
+  100% {
+    transform: translateX(155%);
+  }
+}
+
+/* 호버 시 살짝 또렷·빨라지며 반응 */
+.cta-primary:hover .cta-holo {
+  opacity: 0.62;
+  animation-duration: 2.4s;
+}
+.cta-primary:hover .cta-holo::before {
+  animation-duration: 1.8s;
+}
+
+/* 누르고 있는 동안(:active): 홀로그램은 사라지고
+   버튼 전체에 홀로그램과 같은 빨강 반투명 오버레이가 덮인다 */
+.cta-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: rgba(255, 59, 48, 0.4); /* 홀로그램과 같은 빨강 (#ff3b30) */
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+/* 흘러가는 바코드 막대(.cta-holo)는 그대로 두고, 홀로그램 sheen(::before)만 끈다 */
+.cta-primary:active .cta-holo::before {
+  opacity: 0;
+}
+.cta-primary:active::after {
+  opacity: 1;
+}
+
+/* 모션 최소화 선호 시 흐름 애니메이션 정지 (정적 바코드 텍스처는 유지) */
+@media (prefers-reduced-motion: reduce) {
+  .cta-holo,
+  .cta-holo::before {
+    animation: none;
+  }
+}

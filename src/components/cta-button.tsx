@@ -24,12 +24,12 @@ export function CtaButton({
   className = "",
   children,
 }: Props) {
+  const isPrimary = variant === "primary";
   const base =
-    "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition active:scale-[0.98]";
-  const styles =
-    variant === "primary"
-      ? "bg-ink text-background shadow-sm hover:bg-ink/90"
-      : "border border-ink/15 bg-card text-ink hover:border-ink/40";
+    "relative isolate inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-6 py-3 text-sm font-semibold transition active:scale-[0.98]";
+  const styles = isPrimary
+    ? "cta-primary bg-ink text-background shadow-sm hover:bg-ink/90"
+    : "border border-ink/15 bg-card text-ink hover:border-ink/40";
 
   return (
     <a
@@ -40,7 +40,12 @@ export function CtaButton({
         : {})}
       className={`${base} ${styles} ${className}`}
     >
-      {children}
+      {/* 메인 CTA 뒤로 흐르는 홀로그램 바코드 — globals.css의 .cta-holo
+          (누르고 있는 동안엔 .cta-primary:active 규칙이 숨기고 빨강 오버레이) */}
+      {isPrimary && <span aria-hidden className="cta-holo" />}
+      <span className="relative z-[1] inline-flex items-center gap-2">
+        {children}
+      </span>
     </a>
   );
 }
