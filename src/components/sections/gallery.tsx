@@ -1,12 +1,42 @@
-import { BarcodeArt, type Motif } from "@/components/barcode-art";
+import Image, { type StaticImageData } from "next/image";
 
-const SAMPLES: { motif: Motif; tint: string }[] = [
-  { motif: "skyline", tint: "#eef0ff" },
-  { motif: "mountains", tint: "#e8f7ee" },
-  { motif: "waves", tint: "#e8f3ff" },
-  { motif: "hills", tint: "#fff0e8" },
-  { motif: "pines", tint: "#eef6e6" },
-  { motif: "blocks", tint: "#f3ecff" },
+import magpieBrewing from "@/assets/samples/magpie-brewing.jpg";
+import gorillaBrewing from "@/assets/samples/gorilla-brewing.png";
+import forest from "@/assets/samples/forest.jpg";
+import dinto from "@/assets/samples/dinto.png";
+import dokkaebiBrewing from "@/assets/samples/dokkaebi-brewing.png";
+import unleashia from "@/assets/samples/unleashia.jpg";
+
+const SAMPLES: {
+  src: StaticImageData;
+  alt: string;
+  cover?: boolean;
+}[] = [
+  {
+    src: magpieBrewing,
+    alt: "남산타워와 산, 새 실루엣이 이어지는 스카이라인 모티프 바코드 아트",
+    cover: true,
+  },
+  {
+    src: gorillaBrewing,
+    alt: "막대 사이로 고릴라 얼굴이 드러나는 바코드 아트",
+  },
+  {
+    src: forest,
+    alt: "나무 숲으로 변형된 바코드 아트, 가지 끝에 새가 앉아 있는 일러스트",
+  },
+  {
+    src: dinto,
+    alt: "립스틱 실루엣과 세리프 타이포를 결합한 바코드 아트",
+  },
+  {
+    src: dokkaebiBrewing,
+    alt: "도깨비 얼굴 모티프로 그린 바코드 아트",
+  },
+  {
+    src: unleashia,
+    alt: "접시 위 글리터 텍스처로 연출한 입체 바코드 아트 사진",
+  },
 ];
 
 export function Gallery() {
@@ -20,9 +50,7 @@ export function Gallery() {
           샘플 갤러리
         </h2>
         <p className="mt-3 text-sm leading-relaxed text-muted">
-          이메일 없이 전부 공개합니다. 아래는{" "}
-          <span className="text-ink">콘셉트 미리보기</span>예요 — 실제 시안이
-          준비되는 대로 교체됩니다. 배경 색은 자유롭게, 막대는 어둡게: 스캔을
+          이메일 없이 전부 공개합니다. 배경과 일러스트는 자유롭게, 스캔을
           지키는 규칙 안에서 디자인합니다.
         </p>
       </div>
@@ -33,14 +61,16 @@ export function Gallery() {
             key={i}
             className="group overflow-hidden rounded-2xl border border-ink/[0.06] bg-card p-3 shadow-sm transition hover:shadow-md"
           >
-            <BarcodeArt
-              seed={i * 13 + 3}
-              motif={s.motif}
-              tint={s.tint}
-              className="w-full"
-            />
+            <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl bg-white">
+              <Image
+                src={s.src}
+                alt={s.alt}
+                sizes="(min-width: 1024px) 320px, (min-width: 640px) 50vw, 100vw"
+                className={`h-full w-full ${s.cover ? "object-cover" : "object-contain"}`}
+              />
+            </div>
             <p className="px-1 pb-1 pt-3 text-xs text-muted">
-              예시 콘셉트 #{String(i + 1).padStart(2, "0")}
+              콘셉트 샘플 #{String(i + 1).padStart(2, "0")}
             </p>
           </div>
         ))}

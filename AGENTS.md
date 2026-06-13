@@ -10,7 +10,7 @@ Marketing landing for the barcode-art design service. Single-page, mobile-first,
 
 ## Where to edit
 - **`src/lib/site.ts`** — single source of config: brand, contact email, pricing, lead time, business info, social links. Change here → the whole page updates. No env vars.
-- Barcode visuals in `src/components/barcode-art.tsx` are generated SVG placeholders; swap for real artwork via `next/image` when ready.
+- Sample artwork lives in `src/assets/samples/` and renders via `next/image` static imports in `sections/gallery.tsx` (6 images) and `sections/hero.tsx` (reuses `magpie-brewing.jpg`). Originals: `~/Resources/barcode-art-ai/랜딩페이지_샘플/`.
 
 ## Architecture
 - `src/app/layout.tsx` — Pretendard font (`<link>`), metadata/OG, Vercel `<Analytics />`

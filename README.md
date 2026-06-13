@@ -32,8 +32,9 @@ src/
     layout.tsx        # fonts, metadata/OG, <Analytics />
     page.tsx          # section composition
     globals.css       # theme tokens (Tailwind v4 @theme inline)
+  assets/
+    samples/          # real sample artwork (next/image static imports)
   components/
-    barcode-art.tsx   # deterministic SVG barcode-art (placeholder visuals)
     cta-button.tsx    # client component; fires Analytics events on click
     site-nav.tsx
     sections/         # hero, gallery, guarantee, pricing, footer, ...
@@ -46,7 +47,7 @@ src/
 
 All editable values live in **`src/lib/site.ts`** — brand name, contact email, pricing, lead time, business info, and social links. Change them there and the whole page updates; there are no environment variables to set.
 
-The barcode visuals in `barcode-art.tsx` are generated SVG placeholders. Swap them for real artwork (via `next/image`) when designs are ready.
+Sample artwork lives in `src/assets/samples/` and is rendered with `next/image` static imports in the gallery and hero sections.
 
 ## Getting started
 

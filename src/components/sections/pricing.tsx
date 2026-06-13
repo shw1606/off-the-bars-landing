@@ -6,7 +6,7 @@ export function Pricing() {
   const { beta, regular, betaSlots, leadTimeDays } = site.price;
   const includes = [
     "브랜드 톤 미감 바코드 디자인 1종",
-    "스캔 작동 보장 — 안 읽히면 전액 환불",
+    "스캔 작동 보장: 안 읽히면 전액 환불",
     "인쇄용 벡터 파일 (AI · EPS)",
     `납기: 영업일 ${leadTimeDays}일`,
   ];

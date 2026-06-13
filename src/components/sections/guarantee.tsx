@@ -6,7 +6,7 @@ export function Guarantee() {
           Scan Guarantee
         </p>
         <h2 className="mx-auto mt-3 max-w-2xl text-2xl font-bold leading-snug sm:text-3xl">
-          스캔 작동 보장 — 안 읽히면 전액 환불
+          스캔 작동 보장: 안 읽히면 전액 환불
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-background/70">
           실제 매장 POS에서 스캔되는 것까지 책임집니다. 막대·여백·대비 등 GS1

@@ -1,6 +1,8 @@
+import Image from "next/image";
+
 import { CtaButton } from "@/components/cta-button";
-import { BarcodeArt } from "@/components/barcode-art";
 import { buildMailto } from "@/lib/mailto";
+import magpieBrewing from "@/assets/samples/magpie-brewing.jpg";
 import { site, formatKRW } from "@/lib/site";
 
 export function Hero() {
@@ -21,8 +23,8 @@ export function Hero() {
 
           <p className="mt-5 max-w-md text-base leading-relaxed text-muted">
             식약처·유통이 요구해 뺄 수 없는 그 바코드를 브랜드 톤 일러스트로 다시
-            그립니다. 막대와 여백 규격은 그대로 — 실제 매장 POS에서 스캔되는
-            것까지 책임집니다.
+            그립니다. 막대와 여백 규격은 그대로 지키고, 실제 매장 POS에서
+            스캔되는 것까지 책임집니다.
           </p>
 
           {/* 베타 가격 전면 노출 */}
@@ -64,15 +66,15 @@ export function Hero() {
 
         <div className="relative">
           <div className="absolute -inset-6 -z-10 rounded-[32px] bg-accent/5 blur-2xl" />
-          <BarcodeArt
-            seed={7}
-            motif="mountains"
-            tint="#eef0ff"
-            className="w-full drop-shadow-sm"
-          />
-          <p className="mt-3 text-center text-xs text-muted">
-            예시 콘셉트 — 어두운 막대 + 자유로운 배경, 스캔을 지키는 규칙 안에서.
-          </p>
+          <div className="overflow-hidden rounded-[24px] border border-ink/[0.06] shadow-sm">
+            <Image
+              src={magpieBrewing}
+              alt="남산타워와 산, 새 실루엣이 이어지는 스카이라인 모티프 바코드 아트"
+              sizes="(min-width: 1024px) 480px, 100vw"
+              fetchPriority="high"
+              className="aspect-[4/3] w-full object-cover"
+            />
+          </div>
         </div>
       </div>
     </section>

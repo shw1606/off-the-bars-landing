@@ -9,7 +9,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const title = `${site.brand} — 스캔되는 바코드 아트`;
+const title = `${site.brand} | 스캔되는 바코드 아트`;
 const description =
   "뺄 수 없는 바코드를 브랜드 톤 일러스트로. 막대·여백 규격은 그대로, 실제 매장 POS에서 스캔되는 것까지 책임집니다. 안 읽히면 전액 환불.";
 

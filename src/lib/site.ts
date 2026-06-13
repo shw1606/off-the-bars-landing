@@ -14,7 +14,7 @@ export const site = {
 
   // 가격 (원) — 콜드아웃리치 카피 §4.2 기준
   price: {
-    beta: 25000,
+    beta: 30000,
     regular: 49000,
     betaSlots: 10,
     leadTimeDays: 2,
